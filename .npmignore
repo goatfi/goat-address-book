@@ -6,7 +6,7 @@
 # Foundry
 out/
 cache/
-
+lib/
 node_modules/
 
 # source
