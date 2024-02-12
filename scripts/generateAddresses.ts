@@ -2,6 +2,8 @@ import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSy
 import { prefixWithGeneratedWarning, prefixWithPragma } from './generator/utils';
 import { generateNetworkAddresses } from './generator/networkGenerator';
 import { arbitrumAddresses } from './configs/networks/arbitrum';
+import { arbitrumAssets } from './configs/assets/arbitrum';
+import { generateAssetsAddresses } from './generator/assetsGenerator';
 
 async function main() {
   // cleanup ts artifacts
@@ -15,8 +17,9 @@ async function main() {
   }
 
   const networkAddresses = [arbitrumAddresses].map((addresses) => generateNetworkAddresses(addresses));
+  const assetAddresses = [arbitrumAssets].map((addresses) => generateAssetsAddresses(addresses));
 
-  const imports = [networkAddresses].flat();
+  const imports = [networkAddresses, assetAddresses].flat();
 
   const jsExports = [...imports.map((f) => f.js).flat()];
   writeFileSync(`./src/ts/GoatAddressBook.ts`, prefixWithGeneratedWarning(''));

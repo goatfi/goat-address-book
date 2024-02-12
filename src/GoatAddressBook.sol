@@ -3,3 +3,4 @@
 pragma solidity >=0.8.0;
 
 import {ProtocolArbitrum} from './ProtocolArbitrum.sol';
+import {AssetsArbitrum} from './AssetsArbitrum.sol';

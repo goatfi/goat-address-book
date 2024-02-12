@@ -103,3 +103,18 @@ export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
     UNISWAP_POSITION_HELPER?: Hex;
   } & T;
 }
+
+/**
+ * @dev config for asset addresses on a certain network
+ */
+export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
+  name: string;
+  chainId: number;
+  addresses: {
+    WETH?: Hex;
+    GOA?: Hex;
+    ARB?: Hex;
+    CRV?: Hex;
+    CRVUSD?: Hex;
+  } & T;
+}
