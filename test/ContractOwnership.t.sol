@@ -7,19 +7,23 @@ import { stdJson } from "forge-std/StdJson.sol";
 import { console } from "forge-std/console.sol";
 import { ProtocolArbitrum } from "../src/sol/ProtocolArbitrum.sol";
 
-interface IVault {
-    function owner() external view returns(address);
-    function strategy() external view returns(address);
+interface IOwnable {
+    function owner() external view returns (address);
 }
 
-interface IStrategy {
-    function owner() external view returns(address);
+interface IVault is IOwnable {
+    function strategy() external view returns (address);
 }
 
 struct GoatChainData {
     string name;
     uint32 chainId;
     address[] vaults;
+    address timelock;
+    address feeConfig;
+    address bridgeAdapter;
+    address rewardPool;
+    address feeBatch;
 }
 
 struct GoatData {
@@ -29,15 +33,13 @@ struct GoatData {
 
 contract ContractOwnershipTest is Test {
     using stdJson for string;
-    using ProtocolArbitrum for address;
 
-    error InvalidOwner();
+    uint32 invalidOwners;
+    GoatData goatData;
 
     /*//////////////////////////////////////////////////////////////////////////
                                   SET-UP FUNCTION
     //////////////////////////////////////////////////////////////////////////*/
-
-    GoatData goatData;
 
     function setUp() public virtual {
         vm.createSelectFork(vm.envString("ARBITRUM_RPC_URL"));
@@ -49,25 +51,50 @@ contract ContractOwnershipTest is Test {
         uint32 chainId = uint32(vm.parseJsonUint(vaultsJson, ".chainId"));
         address[] memory vaults = vm.parseJsonAddressArray(vaultsJson, ".vaults");
 
-        GoatChainData memory goatVaults = GoatChainData(chainName, chainId, vaults);
+        GoatChainData memory goatVaults = GoatChainData(
+            chainName,
+            chainId,
+            vaults,
+            ProtocolArbitrum.TIMELOCK,
+            ProtocolArbitrum.FEE_CONFIG,
+            ProtocolArbitrum.LAYERZERO_BRIDGE_ADAPTER,
+            ProtocolArbitrum.GOAT_REWARD_POOL,
+            ProtocolArbitrum.GOAT_FEE_BATCH
+        );
+
         goatData.chainVaults[0] = goatVaults;
         goatData.chainsSize++;
     }
 
-    function test_vaultOwnership() public { 
-        uint32 invalidOwners;
+    function test_networkOwnership() public {
+        invalidOwners = 0;
         for (uint8 i = 0; i < goatData.chainsSize; i++) {
-            IVault vault = IVault(goatData.chainVaults[i].vaults[0]);
-            IStrategy strategy = IStrategy(vault.strategy());
-            if(vault.owner() != ProtocolArbitrum.TIMELOCK){
-                console.log( "\u001b[1;31m Vault owner not Timelock", address(vault), "\u001b[0m");
-                invalidOwners++;
-            }
-            if(strategy.owner() != ProtocolArbitrum.TIMELOCK){
-                console.log( "\u001b[1;31m Strateguy owner not Timelock", address(strategy), "\u001b[0m");
-                invalidOwners++;
-            }
+            _checkOwner(ProtocolArbitrum.FEE_CONFIG);
+            if (ProtocolArbitrum.LAYERZERO_BRIDGE_ADAPTER != address(0)) _checkOwner(ProtocolArbitrum.LAYERZERO_BRIDGE_ADAPTER);
+            if (ProtocolArbitrum.GOAT_REWARD_POOL != address(0)) _checkOwner(ProtocolArbitrum.GOAT_REWARD_POOL);
+            if (ProtocolArbitrum.GOAT_FEE_BATCH != address(0)) _checkOwner(ProtocolArbitrum.GOAT_FEE_BATCH);
         }
         assertEq(invalidOwners, 0);
+    }
+
+    function test_vaultOwnership() public {
+        invalidOwners = 0;
+        for (uint8 i = 0; i < goatData.chainsSize; i++) {
+            IVault vault = IVault(goatData.chainVaults[i].vaults[0]);
+            _checkOwner(address(vault));
+            _checkOwner(vault.strategy());
+        }
+        assertEq(invalidOwners, 0);
+    }
+
+    function _checkOwner(address _target) private {
+        if (IOwnable(_target).owner() != ProtocolArbitrum.TIMELOCK) {
+            invalidOwners++;
+            _printError(_target);
+        }
+    }
+
+    function _printError(address _target) private view {
+        console.log("\u001b[1;31m Owner not Timelock", _target, "\u001b[0m");
     }
 }
