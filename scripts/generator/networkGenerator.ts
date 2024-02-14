@@ -17,7 +17,7 @@ export function generateNetworkAddresses(config: NetworkAddresses<any>) {
   );
 
   fs.writeFileSync(
-    `./src/${name}.sol`,
+    `./src/sol/${name}.sol`,
     prefixWithGeneratedWarning(prefixWithPragma(solidityLibrary)),
   );
   fs.writeFileSync(

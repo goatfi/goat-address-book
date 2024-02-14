@@ -5,7 +5,7 @@ pragma solidity 0.8.20;
 import { Test } from "forge-std/Test.sol";
 import { stdJson } from "forge-std/StdJson.sol";
 import { console } from "forge-std/console.sol";
-import { ProtocolArbitrum } from "../src/ProtocolArbitrum.sol";
+import { ProtocolArbitrum } from "../src/sol/ProtocolArbitrum.sol";
 
 interface IVault {
     function owner() external view returns(address);
@@ -19,7 +19,7 @@ interface IStrategy {
 struct GoatChainData {
     string name;
     uint32 chainId;
-    address[] addresses;
+    address[] vaults;
 }
 
 struct GoatData {
@@ -42,7 +42,7 @@ contract ContractOwnershipTest is Test {
     function setUp() public virtual {
         vm.createSelectFork(vm.envString("ARBITRUM_RPC_URL"));
         string memory root = vm.projectRoot();
-        string memory vaultsPath = string.concat(root, "/src/GoatVaults.json");
+        string memory vaultsPath = string.concat(root, "/src/json/GoatVaults.json");
         string memory vaultsJson = vm.readFile(vaultsPath);
 
         string memory chainName = vm.parseJsonString(vaultsJson, ".name");
@@ -54,10 +54,10 @@ contract ContractOwnershipTest is Test {
         goatData.chainsSize++;
     }
 
-    function testOwnership() public { 
+    function test_vaultOwnership() public { 
         uint32 invalidOwners;
         for (uint8 i = 0; i < goatData.chainsSize; i++) {
-            IVault vault = IVault(goatData.chainVaults[i].addresses[0]);
+            IVault vault = IVault(goatData.chainVaults[i].vaults[0]);
             IStrategy strategy = IStrategy(vault.strategy());
             if(vault.owner() != ProtocolArbitrum.TIMELOCK){
                 console.log( "\u001b[1;31m Vault owner not Timelock", address(vault), "\u001b[0m");

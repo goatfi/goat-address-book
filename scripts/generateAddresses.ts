@@ -29,10 +29,10 @@ async function main() {
 
   const solidityImports = imports.map((f) => f.solidity).flat();
 
-  writeFileSync(`./src/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
-  solidityImports.map((solExport) => appendFileSync('./src/GoatAddressBook.sol', solExport));
+  writeFileSync(`./src/sol/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
+  solidityImports.map((solExport) => appendFileSync('./src/sol/GoatAddressBook.sol', solExport));
 
-  writeFileSync('./src/GoatVaults.json', vaultAddresses.join(`\n`));
+  writeFileSync('./src/json/GoatVaults.json', vaultAddresses.join(`\n`));
 }
 
 main();
