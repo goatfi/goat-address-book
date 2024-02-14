@@ -50,9 +50,3 @@ export interface NetworkVaults<T extends Record<string, AddressInfo> = {}> {
   chainId: number;
   vaults: Hex[];
 }
-
-export interface NetworkStrategies<T extends Record<string, AddressInfo> = {}> {
-  name: string;
-  chainId: number;
-  strategies: Hex[];
-}

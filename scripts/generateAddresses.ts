@@ -4,7 +4,7 @@ import { generateNetworkAddresses } from './generator/networkGenerator';
 import { generateAssetsAddresses } from './generator/assetsGenerator';
 import { arbitrumAddresses } from './configs/networks/arbitrum';
 import { arbitrumAssets } from './configs/assets/arbitrum';
-import { arbitrumVaults, arbitrumStrategies } from './configs/vaults/arbitrum';
+import { arbitrumVaults } from './configs/vaults/arbitrum';
 
 async function main() {
   // cleanup ts artifacts
@@ -20,7 +20,6 @@ async function main() {
   const networkAddresses = [arbitrumAddresses].map((addresses) => generateNetworkAddresses(addresses));
   const assetAddresses = [arbitrumAssets].map((addresses) => generateAssetsAddresses(addresses));
   const vaultAddresses = [arbitrumVaults].map((addresses) => JSON.stringify(addresses));
-  const strategyAddresses = [arbitrumStrategies].map((addresses) => JSON.stringify(addresses));
 
   const imports = [networkAddresses, assetAddresses].flat();
 
@@ -34,7 +33,6 @@ async function main() {
   solidityImports.map((solExport) => appendFileSync('./src/GoatAddressBook.sol', solExport));
 
   writeFileSync('./src/GoatVaults.json', vaultAddresses.join(`\n`));
-  writeFileSync('./src/GoatStrategies.json', strategyAddresses.join(`\n`));
 }
 
 main();
