@@ -6,10 +6,11 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
-    "prettier": "prettier --write 'src/**/*.{sol,ts}'",
+    "prettier": "prettier --write 'src/**/*.{sol,ts,json}'",
     "generate:addresses": "tsx scripts/generateAddresses.ts && npm run prettier",
-    "start": "tsx scripts/generateAddresses.ts && npm run prettier",
-    "ci:publish": "npm run build && npm publish --access=public"
+    "start": "tsx scripts/generateAddresses.ts && npm run prettier && yarn test",
+    "ci:publish": "npm run build && npm publish --access=public",
+    "test": "forge test -vv"
   },
   "repository": {
     "type": "git",

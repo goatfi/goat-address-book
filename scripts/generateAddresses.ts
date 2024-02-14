@@ -1,9 +1,10 @@
 import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'fs';
 import { prefixWithGeneratedWarning, prefixWithPragma } from './generator/utils';
 import { generateNetworkAddresses } from './generator/networkGenerator';
+import { generateAssetsAddresses } from './generator/assetsGenerator';
 import { arbitrumAddresses } from './configs/networks/arbitrum';
 import { arbitrumAssets } from './configs/assets/arbitrum';
-import { generateAssetsAddresses } from './generator/assetsGenerator';
+import { arbitrumVaults } from './configs/vaults/arbitrum';
 
 async function main() {
   // cleanup ts artifacts
@@ -18,6 +19,7 @@ async function main() {
 
   const networkAddresses = [arbitrumAddresses].map((addresses) => generateNetworkAddresses(addresses));
   const assetAddresses = [arbitrumAssets].map((addresses) => generateAssetsAddresses(addresses));
+  const vaultAddresses = [arbitrumVaults].map((addresses) => JSON.stringify(addresses));
 
   const imports = [networkAddresses, assetAddresses].flat();
 
@@ -27,8 +29,10 @@ async function main() {
 
   const solidityImports = imports.map((f) => f.solidity).flat();
 
-  writeFileSync(`./src/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
-  solidityImports.map((solExport) => appendFileSync('./src/GoatAddressBook.sol', solExport));
+  writeFileSync(`./src/sol/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
+  solidityImports.map((solExport) => appendFileSync('./src/sol/GoatAddressBook.sol', solExport));
+
+  writeFileSync('./src/json/GoatVaults.json', vaultAddresses.join(`\n`));
 }
 
 main();

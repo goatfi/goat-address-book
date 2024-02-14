@@ -21,6 +21,15 @@
           "singleQuote": true,
           "bracketSpacing": false
         }
+      },
+      {
+        "files": "*.json",
+        "options": {
+          "trailingComma": "es5",
+          "tabWidth": 4,
+          "semi": false,
+          "singleQuote": true
+        }
       }
     ]
   }
