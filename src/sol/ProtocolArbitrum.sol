@@ -24,9 +24,9 @@ library ProtocolArbitrum {
   // https://arbiscan.io/address/0x667Fe8DD40969A5fB92b53e9C8503b454E569BDB
   address internal constant LAYERZERO_BRIDGE_ADAPTER = 0x667Fe8DD40969A5fB92b53e9C8503b454E569BDB;
 
-  // https://arbiscan.io/address/0xeb8d830bd399cbDD55eEcc011E02a027DDD0d25b
-  address internal constant GOAT_FEE_BATCH = 0xeb8d830bd399cbDD55eEcc011E02a027DDD0d25b;
+  // https://arbiscan.io/address/0x7C758F30892F2Ad7d7aE29f4A588Eab4DdD62E66
+  address internal constant GOAT_FEE_BATCH = 0x7C758F30892F2Ad7d7aE29f4A588Eab4DdD62E66;
 
-  // https://arbiscan.io/address/0xA0eFC7056986411e02bC3fCdD82CCdfd9D3AB3A2
-  address internal constant GOAT_REWARD_POOL = 0xA0eFC7056986411e02bC3fCdD82CCdfd9D3AB3A2;
+  // https://arbiscan.io/address/0xAD9CE8580a1Cd887038405275cB02443E8fb88aC
+  address internal constant GOAT_REWARD_POOL = 0xAD9CE8580a1Cd887038405275cB02443E8fb88aC;
 }
