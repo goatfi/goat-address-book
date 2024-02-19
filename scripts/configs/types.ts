@@ -38,10 +38,15 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
   chainId: number;
   addresses: {
     WETH?: Hex;
+    WBTC?: Hex;
     GOA?: Hex;
     ARB?: Hex;
     CRV?: Hex;
     CRVUSD?: Hex;
+    USDT?: Hex;
+    USDC?: Hex;
+    USDCe?: Hex;
+    MIM?: Hex;
   } & T;
 }
 
