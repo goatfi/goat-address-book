@@ -75,6 +75,7 @@ contract ContractOwnershipTest is Test {
             if (ProtocolArbitrum.GOAT_FEE_BATCH != address(0)) _checkOwner(ProtocolArbitrum.GOAT_FEE_BATCH);
         }
         assertEq(invalidOwners, 0);
+        if(invalidOwners == 0) _printSuccess("All Protocol Contracts have the Timelock as owner");
     }
 
     function test_vaultOwnership() public {
@@ -85,6 +86,7 @@ contract ContractOwnershipTest is Test {
             _checkOwner(vault.strategy());
         }
         assertEq(invalidOwners, 0);
+        if(invalidOwners == 0) _printSuccess("All Vaults and strategies have the Timelock as owner");
     }
 
     function _checkOwner(address _target) private {
@@ -96,5 +98,9 @@ contract ContractOwnershipTest is Test {
 
     function _printError(address _target) private view {
         console.log("\u001b[1;31m Owner not Timelock", _target, "\u001b[0m");
+    }
+
+    function _printSuccess(string memory _msg) private view {
+        console.log("\u001b[1;32m", _msg, "\u001b[0m");
     }
 }
