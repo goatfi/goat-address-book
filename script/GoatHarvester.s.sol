@@ -26,7 +26,7 @@ contract GoatHarvester is Script {
         
         for (uint i = 0; i < strategies.length; i++) {
             IStrategy strategy = IStrategy(strategies[i]);
-            if(block.timestamp - strategy.lastHarvest() >= 12 hours){
+            if(block.timestamp - strategy.lastHarvest() >= 24 hours){
                 strategy.harvest();
                 console.log("Harvested:", address(strategy));
             }
