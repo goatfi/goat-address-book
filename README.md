@@ -32,7 +32,13 @@ import { ProtocolArbitrum } from "@goatfi/goat-address-book";
 // all variables available on solidity version are available in javascript as well
 console.log(ProtocolArbitrum.TREASURY);
 ```
+### Vault Registry
 
+Other repositories like our api or [DefiLlama Adapters](https://github.com/DefiLlama/DefiLlama-Adapters), read the [vault registry](https://github.com/goatfi/goat-address-book/tree/main/vault-registry) to build data. The vault registry must be up to date with the vaults on the app.
+
+### Releases
+
+New package releases will happen when new protocol addresses or chain assets are added. New vaults added to the address-book won't trigger a new relase, but they will be added to the next version.
 
 ### Production Recommendations
 
