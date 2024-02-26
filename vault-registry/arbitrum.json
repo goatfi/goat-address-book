@@ -95,6 +95,25 @@
       "createdAt": 1703170800
     },
     {
+      "id": "0x0DE66D5C7a171047fa9Ea45DA7302cD153E2D72B",
+      "name": "wstGOA",
+      "type": "standard",
+      "token": "GOA",
+      "tokenAddress": "0x8c6Bd546fB8B53fE371654a0E54D7a5bD484b319",
+      "tokenDecimals": 18,
+      "earnedToken": "wstGOA",
+      "earnedTokenAddress": "0x0DE66D5C7a171047fa9Ea45DA7302cD153E2D72B",
+      "earnContractAddress": "0x0DE66D5C7a171047fa9Ea45DA7302cD153E2D72B",
+      "oracle": "tokens",
+      "oracleId": "GOA",
+      "status": "active",
+      "createdAt": 1703170801,
+      "platformId": "goatfi",
+      "assets": ["GOA"],
+      "strategyTypeId": "",
+      "network": "arbitrum"
+    },
+    {
       "id": "0x3475F10D46ABbb2e0176ca1b00949990B496B00c",
       "name": "crvUSD-FRAX",
       "token": "crvUSDFRAX",
