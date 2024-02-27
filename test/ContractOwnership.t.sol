@@ -81,10 +81,13 @@ contract ContractOwnershipTest is Test {
     function test_vaultOwnership() public {
         invalidOwners = 0;
         for (uint8 i = 0; i < goatData.chainsSize; i++) {
-            IVault vault = IVault(goatData.chainVaults[i].vaults[0]);
-            _checkOwner(address(vault));
-            _checkOwner(vault.strategy());
+            for (uint16 j = 0; j < goatData.chainVaults[i].vaults.length; j++) {
+                IVault vault = IVault(goatData.chainVaults[i].vaults[j]);
+                _checkOwner(address(vault));
+                _checkOwner(vault.strategy());
+            }
         }
+        
         assertEq(invalidOwners, 0);
         if(invalidOwners == 0) _printSuccess("All Vaults and strategies have the Timelock as owner");
     }
