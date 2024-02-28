@@ -29,4 +29,10 @@ export const USDCe = '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8';
 // https://arbiscan.io/address/0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A
 export const MIM = '0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A';
 
+// https://arbiscan.io/address/0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8
+export const PENDLE = '0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8';
+
+// https://arbiscan.io/address/0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C
+export const EQB = '0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C';
+
 export const CHAIN_ID = 42161;

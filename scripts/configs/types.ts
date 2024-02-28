@@ -47,6 +47,8 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
     USDC?: Hex;
     USDCe?: Hex;
     MIM?: Hex;
+    PENDLE?: Hex;
+    EQB?: Hex;
   } & T;
 }
 

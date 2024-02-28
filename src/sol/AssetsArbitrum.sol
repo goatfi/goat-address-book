@@ -32,4 +32,10 @@ library AssetsArbitrum {
 
   // https://arbiscan.io/address/0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A
   address internal constant MIM = 0xFEa7a6a0B346362BF88A9e4A88416B77a57D6c2A;
+
+  // https://arbiscan.io/address/0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8
+  address internal constant PENDLE = 0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8;
+
+  // https://arbiscan.io/address/0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C
+  address internal constant EQB = 0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C;
 }
