@@ -32,7 +32,7 @@ contract GoatHarvester is Script {
 
         uint256 gasPrice = _getGasPrice();
 
-        if(gasPrice > 40 gwei){
+        if(gasPrice > 55 gwei){
             console.log("Gas price too high", gasPrice / 1e9);
             return;
         }
