@@ -38,4 +38,7 @@ library AssetsArbitrum {
 
   // https://arbiscan.io/address/0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C
   address internal constant EQB = 0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C;
+
+  // https://arbiscan.io/address/0x5979D7b546E38E414F7E9822514be443A4800529
+  address internal constant WSTETH = 0x5979D7b546E38E414F7E9822514be443A4800529;
 }
