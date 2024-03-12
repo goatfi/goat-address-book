@@ -35,4 +35,7 @@ export const PENDLE = '0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8';
 // https://arbiscan.io/address/0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C
 export const EQB = '0xBfbCFe8873fE28Dfa25f1099282b088D52bbAD9C';
 
+// https://arbiscan.io/address/0x5979D7b546E38E414F7E9822514be443A4800529
+export const WSTETH = '0x5979D7b546E38E414F7E9822514be443A4800529';
+
 export const CHAIN_ID = 42161;

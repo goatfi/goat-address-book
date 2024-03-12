@@ -26,6 +26,7 @@ export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
     LAYERZERO_BRIDGE_ADAPTER: Hex;
     GOAT_FEE_BATCH: Hex;
     GOAT_REWARD_POOL?: Hex;
+    GOAT_SWAPPER?: Hex;
     UNISWAP_POSITION_HELPER?: Hex;
   } & T;
 }
@@ -49,6 +50,7 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
     MIM?: Hex;
     PENDLE?: Hex;
     EQB?: Hex;
+    WSTETH?: Hex;
   } & T;
 }
 
