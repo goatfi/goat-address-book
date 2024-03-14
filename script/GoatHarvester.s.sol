@@ -23,19 +23,12 @@ interface IERC20 {
 contract GoatHarvester is Script {
 
     address[] strategies = _getStrategies();
-    uint256 minRevShareHarvestAmount = 0.001 ether;
+    uint256 minRevShareHarvestAmount = 0.002 ether;
 
     function run() public {
         uint privateKey = vm.envUint("HARVESTER_PK");
 
         vm.startBroadcast(privateKey);
-
-        uint256 gasPrice = _getGasPrice();
-
-        if(gasPrice > 55 gwei){
-            console.log("Gas price too high", gasPrice / 1e9);
-            return;
-        }
 
         uint256 feeBatchBalance = _getFeeBatchBalance();
         if(feeBatchBalance >= minRevShareHarvestAmount){
@@ -45,7 +38,7 @@ contract GoatHarvester is Script {
         
         for (uint i = 0; i < strategies.length; i++) {
             IStrategy strategy = IStrategy(strategies[i]);
-            if(block.timestamp - strategy.lastHarvest() >= 24 hours){
+            if(block.timestamp - strategy.lastHarvest() >= 12 hours){
                 strategy.harvest();
                 console.log("Harvested:", address(strategy));
             }
