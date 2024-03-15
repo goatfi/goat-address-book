@@ -305,5 +305,26 @@
     "addLiquidityUrl": "https://app.pendle.finance/trade/pools/0x14FbC760eFaF36781cB0eb3Cb255aD976117B9Bd/zap/in?chain=arbitrum",
     "removeLiquidityUrl": "https://app.pendle.finance/trade/pools/0x14FbC760eFaF36781cB0eb3Cb255aD976117B9Bd/zap/out?chain=arbitrum",
     "network": "arbitrum"
+  },
+  {
+    "id": "0xBf8517d8C708Ee32dDA7Cc51C023BBAe099FD480",
+    "name": "USDC",
+    "token": "PENDLE-aUSDC",
+    "tokenAddress": "0xBa4A858d664Ddb052158168DB04AFA3cFF5CFCC8",
+    "tokenDecimals": 18,
+    "tokenProviderId": "pendle",
+    "earnedToken": "gEqb-aUSDC-27JUN24",
+    "earnedTokenAddress": "0xBf8517d8C708Ee32dDA7Cc51C023BBAe099FD480",
+    "earnContractAddress": "0xBf8517d8C708Ee32dDA7Cc51C023BBAe099FD480",
+    "oracle": "lps",
+    "oracleId": "0xBf8517d8C708Ee32dDA7Cc51C023BBAe099FD480",
+    "status": "active",
+    "createdAt": 1710492567,
+    "platformId": "equilibria",
+    "assets": ["USDC"],
+    "strategyTypeId": "single-lp",
+    "addLiquidityUrl": "https://app.pendle.finance/trade/pools/0xba4a858d664ddb052158168db04afa3cff5cfcc8/zap/in?chain=arbitrum",
+    "removeLiquidityUrl": "https://app.pendle.finance/trade/pools/0xba4a858d664ddb052158168db04afa3cff5cfcc8/zap/out?chain=arbitrum",
+    "network": "arbitrum"
   }
 ]
