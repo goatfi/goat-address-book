@@ -326,5 +326,26 @@
     "addLiquidityUrl": "https://app.pendle.finance/trade/pools/0xba4a858d664ddb052158168db04afa3cff5cfcc8/zap/in?chain=arbitrum",
     "removeLiquidityUrl": "https://app.pendle.finance/trade/pools/0xba4a858d664ddb052158168db04afa3cff5cfcc8/zap/out?chain=arbitrum",
     "network": "arbitrum"
+  },
+  {
+    "id": "0x36139E2e06b098d2D0c61F072d6691ABDc455f89",
+    "name": "ezETH",
+    "token": "PENDLE-ezETH",
+    "tokenAddress": "0x60712e3C9136CF411C561b4E948d4d26637561e7",
+    "tokenDecimals": 18,
+    "tokenProviderId": "pendle",
+    "earnedToken": "gEqb-ezETH-27JUN24",
+    "earnedTokenAddress": "0x36139E2e06b098d2D0c61F072d6691ABDc455f89",
+    "earnContractAddress": "0x36139E2e06b098d2D0c61F072d6691ABDc455f89",
+    "oracle": "lps",
+    "oracleId": "0x36139E2e06b098d2D0c61F072d6691ABDc455f89",
+    "status": "active",
+    "createdAt": 1710501686,
+    "platformId": "equilibria",
+    "assets": ["ezETH"],
+    "strategyTypeId": "single-lp",
+    "addLiquidityUrl": "https://app.pendle.finance/trade/pools/0x60712e3c9136cf411c561b4e948d4d26637561e7/zap/in?chain=arbitrum",
+    "removeLiquidityUrl": "https://app.pendle.finance/trade/pools/0x60712e3c9136cf411c561b4e948d4d26637561e7/zap/out?chain=arbitrum",
+    "network": "arbitrum"
   }
 ]
