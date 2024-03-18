@@ -15,6 +15,10 @@ interface IVault is IOwnable {
     function strategy() external view returns (address);
 }
 
+interface IStrategy is IOwnable {
+    function keeper() external view returns (address);
+}
+
 struct GoatChainData {
     string name;
     uint32 chainId;
@@ -35,6 +39,7 @@ contract ContractOwnershipTest is Test {
     using stdJson for string;
 
     uint32 invalidOwners;
+    uint32 invalidKeepers;
     GoatData goatData;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -85,22 +90,34 @@ contract ContractOwnershipTest is Test {
                 IVault vault = IVault(goatData.chainVaults[i].vaults[j]);
                 _checkOwner(address(vault));
                 _checkOwner(vault.strategy());
+                _checkKeeper(vault.strategy());
             }
         }
         
         assertEq(invalidOwners, 0);
         if(invalidOwners == 0) _printSuccess("All Vaults and strategies have the Timelock as owner");
+        if(invalidKeepers == 0) _printSuccess("All Strategies have the Treasury as keeper");
     }
 
     function _checkOwner(address _target) private {
         if (IOwnable(_target).owner() != ProtocolArbitrum.TIMELOCK) {
             invalidOwners++;
-            _printError(_target);
+            _printOwnerError(_target);
         }
     }
 
-    function _printError(address _target) private view {
+    function _checkKeeper(address _target) private {
+        if(IStrategy(_target).keeper() != ProtocolArbitrum.TREASURY){
+            invalidKeepers++;
+            _printKeeperError(_target);
+        }
+    }
+
+    function _printOwnerError(address _target) private view {
         console.log("\u001b[1;31m Owner not Timelock", _target, "\u001b[0m");
+    }
+    function _printKeeperError(address _target) private view {
+        console.log("\u001b[1;31m Keeper not Treasury", _target, "\u001b[0m");
     }
 
     function _printSuccess(string memory _msg) private view {

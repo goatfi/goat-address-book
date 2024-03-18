@@ -14,6 +14,7 @@ interface IVault {
 interface IStrategy {
     function harvest() external;
     function lastHarvest() external view returns (uint256);
+    function paused() external view returns (bool);
 }
 
 interface IERC20 {
@@ -38,6 +39,7 @@ contract GoatHarvester is Script {
         
         for (uint i = 0; i < strategies.length; i++) {
             IStrategy strategy = IStrategy(strategies[i]);
+            if(strategy.paused()) continue;
             if(block.timestamp - strategy.lastHarvest() >= 12 hours){
                 strategy.harvest();
                 console.log("Harvested:", address(strategy));
