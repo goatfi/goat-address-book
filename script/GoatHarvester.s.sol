@@ -24,7 +24,7 @@ interface IERC20 {
 
 contract GoatHarvester is Script {
     address[] strategies = _getStrategies();
-    uint256 minRevShareHarvestAmount = 0.002 ether;
+    uint256 minRevShareHarvestAmount = 0.005 ether;
 
     function run() public {
         uint privateKey = vm.envUint("HARVESTER_PK");
