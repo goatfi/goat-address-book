@@ -391,5 +391,26 @@
     "addLiquidityUrl": "https://curve.fi/#/arbitrum/pools/factory-tricrypto-9/deposit",
     "removeLiquidityUrl": "https://curve.fi/#/arbitrum/pools/factory-tricrypto-9/withdraw",
     "createdAt": 1711027086
+  },
+  {
+    "id": "0xA05F25C16389C191aFbCC27A8e461fB67093D7f9",
+    "name": "ezETH",
+    "token": "PENDLE-ezETH",
+    "tokenAddress": "0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2",
+    "tokenDecimals": 18,
+    "tokenProviderId": "pendle",
+    "earnedToken": "gEqb-ezETH-27JUN24",
+    "earnedTokenAddress": "0xA05F25C16389C191aFbCC27A8e461fB67093D7f9",
+    "earnContractAddress": "0xA05F25C16389C191aFbCC27A8e461fB67093D7f9",
+    "oracle": "lps",
+    "oracleId": "0xA05F25C16389C191aFbCC27A8e461fB67093D7f9",
+    "status": "active",
+    "createdAt": 1712225542,
+    "platformId": "equilibria",
+    "assets": ["ezETH"],
+    "strategyTypeId": "single-lp",
+    "addLiquidityUrl": "https://app.pendle.finance/trade/pools/0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2/zap/in?chain=arbitrum",
+    "removeLiquidityUrl": "https://app.pendle.finance/trade/pools/0x5e03c94fc5fb2e21882000a96df0b63d2c4312e2/zap/out?chain=arbitrum",
+    "network": "arbitrum"
   }
 ]
