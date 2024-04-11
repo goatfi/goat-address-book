@@ -1,4 +1,4 @@
-name: Harvest
+name: Harvester V2
 
 on:
   schedule:
@@ -14,7 +14,7 @@ jobs:
         HARVESTER_PK: ${{ secrets.HARVESTER_PK }}
         ARBITRUM_RPC_WEBSOCKET: ${{ secrets.ARBITRUM_RPC_WEBSOCKET }}
   
-    name: Foundry project
+    name: Harvester
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +24,8 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      
+      - run: bun install
   
       - name: "Run Harvester"
         timeout-minutes: 10
