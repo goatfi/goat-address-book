@@ -102,7 +102,11 @@ async function harvest(address: Hex) {
     maxPriorityFeePerGas: gasPrice,
   });
 
-  if(broadcastTransactions) await walletClient.writeContract(request);
+  try{
+    if(broadcastTransactions) await walletClient.writeContract(request);
+  } catch(e) {
+    console.log("Harvest Error:", address);
+  }
 
   console.log("Harvested:", address);
 }
