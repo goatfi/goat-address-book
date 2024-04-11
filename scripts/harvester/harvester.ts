@@ -40,7 +40,13 @@ async function main() {
 
     const lastHarvest = await getLastHarvest(strategy);
     const timeSinceLastHarvest = Number(currentBlock.timestamp) - Number(lastHarvest);
-    if(timeSinceLastHarvest >= harvestFrequency) await harvest(strategy);
+    if(timeSinceLastHarvest >= harvestFrequency) {
+      try{
+        await harvest(strategy);
+      } catch(e) {
+        console.log("Harvest Error:", strategy);
+      }
+    }
   }
 
   const feeBatchBalance = await getFeeBatchBalance();
@@ -101,13 +107,8 @@ async function harvest(address: Hex) {
     functionName: 'harvest',
     maxFeePerGas: gasPrice,
   });
-
-  try{
-    if(broadcastTransactions) await walletClient.writeContract(request);
-  } catch(e) {
-    console.log("Harvest Error:", address);
-  }
-
+  
+  if(broadcastTransactions) await walletClient.writeContract(request);
   console.log("Harvested:", address);
 }
 
