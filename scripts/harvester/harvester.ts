@@ -99,7 +99,7 @@ async function harvest(address: Hex) {
     address,
     abi: StrategyAbi,
     functionName: 'harvest',
-    maxPriorityFeePerGas: gasPrice,
+    maxFeePerGas: gasPrice,
   });
 
   try{
