@@ -30,21 +30,22 @@ contract GoatHarvester is Script {
         uint privateKey = vm.envUint("HARVESTER_PK");
 
         vm.startBroadcast(privateKey);
-
-        uint256 feeBatchBalance = _getFeeBatchBalance();
-        if(feeBatchBalance >= minRevShareHarvestAmount){
-            IStrategy(ProtocolArbitrum.GOAT_FEE_BATCH).harvest();
-            console.log("FeeBatch Harvested:", feeBatchBalance);
-        }
         
         for (uint i = 0; i < strategies.length; i++) {
             IStrategy strategy = IStrategy(strategies[i]);
             if(strategy.paused()) continue;
             if(_strategyHasBelowMinBalance(strategy)) continue;
-            if(block.timestamp - strategy.lastHarvest() >= 1 hours){
+            if(address(strategy) == 0xA79b2b1CC042CD21f317d11A2Eb7cb051599587e) continue;
+            if(block.timestamp - strategy.lastHarvest() >= 11 hours){
                 strategy.harvest();
                 console.log("Harvested:", address(strategy));
             }
+        }
+
+        uint256 feeBatchBalance = _getFeeBatchBalance();
+        if(feeBatchBalance >= minRevShareHarvestAmount){
+            IStrategy(ProtocolArbitrum.GOAT_FEE_BATCH).harvest();
+            console.log("FeeBatch Harvested:", feeBatchBalance);
         }
         vm.stopBroadcast();
     }
