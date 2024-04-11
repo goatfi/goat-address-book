@@ -1,9 +1,7 @@
 name: Harvest
 
 on:
-    schedule:
-        - cron: "0 */4 * * *"
-    workflow_dispatch:
+  workflow_dispatch:
 
 env:
   FOUNDRY_PROFILE: default

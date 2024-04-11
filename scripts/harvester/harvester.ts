@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { Hex, createPublicClient, createWalletClient, webSocket, parseEther } from 'viem'
+import { Hex, createPublicClient, createWalletClient, webSocket, parseEther, parseGwei } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { arbitrum } from 'viem/chains'
 import { GOAT_FEE_BATCH } from '../../src/ts/ProtocolArbitrum'
@@ -11,8 +11,9 @@ dotenv.config();
 
 /// PARAMETERS
 const harvestFrequency = 43200; // 12 hours
-const feeBatchMinBalance = parseEther('0.02'); 
-const broadcastTransactions = false;
+const feeBatchMinBalance = parseEther('0.02');
+const broadcastTransactions = Bun.argv.includes('--broadcast');
+const gasPrice = parseGwei('0.012');
 
 const account = privateKeyToAccount(process.env.HARVESTER_PK as Hex); 
 const publicClient = createPublicClient({ 
@@ -98,6 +99,7 @@ async function harvest(address: Hex) {
     address,
     abi: StrategyAbi,
     functionName: 'harvest',
+    maxPriorityFeePerGas: gasPrice,
   });
 
   if(broadcastTransactions) await walletClient.writeContract(request);
