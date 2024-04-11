@@ -1,0 +1,30 @@
+name: Harvest
+
+on:
+  schedule:
+      - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+  
+    env:
+        HARVESTER_PK: ${{ secrets.HARVESTER_PK }}
+        ARBITRUM_RPC_WEBSOCKET: ${{ secrets.ARBITRUM_RPC_WEBSOCKET }}
+  
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+  
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+  
+      - name: "Run Harvester"
+        timeout-minutes: 10
+        run: "bun run scripts/harvester/harvester.ts --broadcast"
