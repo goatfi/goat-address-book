@@ -41,7 +41,7 @@ contract GoatHarvester is Script {
             IStrategy strategy = IStrategy(strategies[i]);
             if(strategy.paused()) continue;
             if(_strategyHasBelowMinBalance(strategy)) continue;
-            if(block.timestamp - strategy.lastHarvest() >= 11 hours){
+            if(block.timestamp - strategy.lastHarvest() >= 1 hours){
                 strategy.harvest();
                 console.log("Harvested:", address(strategy));
             }
