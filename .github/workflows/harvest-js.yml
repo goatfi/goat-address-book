@@ -2,7 +2,7 @@ name: Harvester V2
 
 on:
   schedule:
-      - cron: "0 */4 * * *"
+      - cron: "0 */3 * * *"
   workflow_dispatch:
 
 jobs:
@@ -28,5 +28,5 @@ jobs:
       - run: bun install
   
       - name: "Run Harvester"
-        timeout-minutes: 10
+        timeout-minutes: 5
         run: "bun run scripts/harvester/harvester.ts --broadcast"
