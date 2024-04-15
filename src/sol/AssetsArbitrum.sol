@@ -41,4 +41,16 @@ library AssetsArbitrum {
 
   // https://arbiscan.io/address/0x5979D7b546E38E414F7E9822514be443A4800529
   address internal constant WSTETH = 0x5979D7b546E38E414F7E9822514be443A4800529;
+
+  // https://arbiscan.io/address/0x0341C0C0ec423328621788d4854119B97f44E391
+  address internal constant SILO = 0x0341C0C0ec423328621788d4854119B97f44E391;
+
+  // https://arbiscan.io/address/0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8
+  address internal constant BAL = 0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8;
+
+  // https://arbiscan.io/address/0x1509706a6c66CA549ff0cB464de88231DDBe213B
+  address internal constant AURA = 0x1509706a6c66CA549ff0cB464de88231DDBe213B;
+
+  // https://arbiscan.io/address/0xd1E094CabC5aCB9D3b0599C3F76f2D01fF8d3563
+  address internal constant VRSW = 0xd1E094CabC5aCB9D3b0599C3F76f2D01fF8d3563;
 }

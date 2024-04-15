@@ -51,6 +51,10 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
     PENDLE?: Hex;
     EQB?: Hex;
     WSTETH?: Hex;
+    SILO?: Hex;
+    BAL?: Hex;
+    AURA?: Hex;
+    VRSW?: Hex;
   } & T;
 }
 
