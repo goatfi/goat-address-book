@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { Hex, parseEther } from 'viem'
+import { Hex, parseEther, parseGwei, formatGwei } from 'viem'
 import { account, publicClient, walletClient } from './config';
 import { arbitrum } from 'viem/chains'
 import { Strategy } from './types';
@@ -11,8 +11,9 @@ import GoatVaults from '../../src/json/GoatVaults.json'
 dotenv.config();
 
 /// PARAMETERS
-const HARVEST_FREQUENCY = 43200; // 12 hours
+const HARVEST_FREQUENCY = 12 * 60 * 60; // 12 hours in seconds
 const FEE_BATCH_MIN_BALANCE = parseEther('0.02');
+const MAX_FEE_PER_GAS = parseGwei('0.05');
 const MIN_TVL_TO_HARVEST = 10;
 const BROADCAST_TRANSACTIONS = Bun.argv.includes('--broadcast');
 
@@ -44,6 +45,16 @@ async function main() {
 }
 
 async function harvest(address: Hex) {
+  const { maxFeePerGas } = await publicClient.estimateFeesPerGas();
+  if(!maxFeePerGas) {
+    console.log("Could not estimate MaxFeePerGas");
+    return;
+  }
+  if(maxFeePerGas > MAX_FEE_PER_GAS) {
+    console.log(`Gas too high: ${formatGwei(maxFeePerGas)}, max allowed ${formatGwei(MAX_FEE_PER_GAS)}. ${address}`);
+    return;
+  }
+
   const { request } = await publicClient.simulateContract({
     account,
     address,
@@ -52,7 +63,7 @@ async function harvest(address: Hex) {
   });
   
   if(BROADCAST_TRANSACTIONS) await walletClient.writeContract(request);
-  console.log("Harvested:", address);
+  console.log(`Harvested: ${address} with gas price of: ${formatGwei(maxFeePerGas)}`);
 }
 
 async function getTVLData(){
