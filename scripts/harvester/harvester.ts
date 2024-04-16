@@ -62,7 +62,10 @@ async function harvest(address: Hex) {
     functionName: 'harvest',
   });
   
-  if(BROADCAST_TRANSACTIONS) await walletClient.writeContract(request);
+  if(BROADCAST_TRANSACTIONS) {
+    const hash = await walletClient.writeContract(request);
+    await publicClient.waitForTransactionReceipt({hash});
+  }
   console.log(`Harvested: ${address} with gas price of: ${formatGwei(maxFeePerGas)}`);
 }
 
