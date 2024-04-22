@@ -23,6 +23,7 @@ export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
     MULTICALL: Hex;
     GOAT_APP_MULTICALL: Hex;
     GOAT_VAULT_FACTORY: Hex;
+    GOAT_BOOST_FACTORY: Hex;
     LAYERZERO_BRIDGE_ADAPTER: Hex;
     GOAT_FEE_BATCH: Hex;
     GOAT_REWARD_POOL?: Hex;

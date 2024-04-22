@@ -21,6 +21,9 @@ library ProtocolArbitrum {
   // https://arbiscan.io/address/0x98B332784678a919489FC05B81Ef5B20BbDdD5BA
   address internal constant GOAT_VAULT_FACTORY = 0x98B332784678a919489FC05B81Ef5B20BbDdD5BA;
 
+  // https://arbiscan.io/address/0x85d5930Cc9e5471A03F29ca5f64c2B83Cc70b497
+  address internal constant GOAT_BOOST_FACTORY = 0x85d5930Cc9e5471A03F29ca5f64c2B83Cc70b497;
+
   // https://arbiscan.io/address/0x667Fe8DD40969A5fB92b53e9C8503b454E569BDB
   address internal constant LAYERZERO_BRIDGE_ADAPTER = 0x667Fe8DD40969A5fB92b53e9C8503b454E569BDB;
 
