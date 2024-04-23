@@ -1,0 +1,19 @@
+[
+    {
+        "id": "0x8E1F2fE31B3F3683851211Ec67eE45CaFb255993",
+        "poolId": "0x8E1F2fE31B3F3683851211Ec67eE45CaFb255993",
+        "name": "Virtuswap",
+        "assets": ["VRSW", "WETH"],
+        "tokenAddress": "0x8E1F2fE31B3F3683851211Ec67eE45CaFb255993",
+        "earnedToken": "VRSW",
+        "earnedTokenDecimals": 18,
+        "earnedTokenAddress": "0xd1E094CabC5aCB9D3b0599C3F76f2D01fF8d3563",
+        "earnContractAddress": "0x17c49009Eb6DF33deD9423eB7d7582AB3C9c9734",
+        "earnedOracle": "tokens",
+        "earnedOracleId": "VRSW",
+        "partnership": true,
+        "status": "active",
+        "isMooStaked": true,
+        "partners": ["virtuswap"]
+      }
+]
