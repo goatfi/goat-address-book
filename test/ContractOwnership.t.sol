@@ -19,10 +19,16 @@ interface IStrategy is IOwnable {
     function keeper() external view returns (address);
 }
 
+interface IBoost {
+    function manager() external view returns (address);
+    function treasury() external view returns (address);
+}
+
 struct GoatChainData {
     string name;
     uint32 chainId;
     address[] vaults;
+    address[] boosts;
     address timelock;
     address feeConfig;
     address bridgeAdapter;
@@ -55,11 +61,13 @@ contract ContractOwnershipTest is Test {
         string memory chainName = vm.parseJsonString(vaultsJson, ".name");
         uint32 chainId = uint32(vm.parseJsonUint(vaultsJson, ".chainId"));
         address[] memory vaults = vm.parseJsonAddressArray(vaultsJson, ".vaults");
+        address[] memory boosts = vm.parseJsonAddressArray(vaultsJson, ".boosts");
 
         GoatChainData memory goatVaults = GoatChainData(
             chainName,
             chainId,
             vaults,
+            boosts,
             ProtocolArbitrum.TIMELOCK,
             ProtocolArbitrum.FEE_CONFIG,
             ProtocolArbitrum.LAYERZERO_BRIDGE_ADAPTER,
@@ -99,6 +107,21 @@ contract ContractOwnershipTest is Test {
         if(invalidKeepers == 0) _printSuccess("All Strategies have the Treasury as keeper");
     }
 
+    function test_boostOwnership() public {
+        invalidOwners = 0;
+        for (uint8 i = 0; i < goatData.chainsSize; i++) {
+            for (uint16 j = 0; j < goatData.chainVaults[i].boosts.length; j++) {
+                address boost = goatData.chainVaults[i].boosts[j];
+                _checkOwner(boost);
+                _checkBoostManagers(boost);
+            }
+        }
+        
+        assertEq(invalidOwners, 0);
+        if(invalidOwners == 0) _printSuccess("All Boosts have the Timelock as owner");
+        if(invalidKeepers == 0) _printSuccess("All Boosts have the Treasury as manager");
+    }
+
     function _checkOwner(address _target) private {
         if (IOwnable(_target).owner() != ProtocolArbitrum.TIMELOCK) {
             invalidOwners++;
@@ -113,11 +136,22 @@ contract ContractOwnershipTest is Test {
         }
     }
 
+    function _checkBoostManagers(address _target) private {
+        if(IBoost(_target).manager()!= ProtocolArbitrum.TREASURY ||
+            IBoost(_target).treasury() != ProtocolArbitrum.TREASURY) {
+                invalidKeepers++;
+                _printManagerError(_target);
+            }
+    }
+
     function _printOwnerError(address _target) private view {
         console.log("\u001b[1;31m Owner not Timelock", _target, "\u001b[0m");
     }
     function _printKeeperError(address _target) private view {
         console.log("\u001b[1;31m Keeper not Treasury", _target, "\u001b[0m");
+    }
+    function _printManagerError(address _target) private view {
+        console.log("\u001b[1;31m Manager not Treasury", _target, "\u001b[0m");
     }
 
     function _printSuccess(string memory _msg) private view {
