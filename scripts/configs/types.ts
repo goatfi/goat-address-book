@@ -63,4 +63,5 @@ export interface NetworkVaults<T extends Record<string, AddressInfo> = {}> {
   name: string;
   chainId: number;
   vaults: Hex[];
+  boosts?: Hex[];
 }

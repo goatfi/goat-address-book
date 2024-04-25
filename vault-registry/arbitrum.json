@@ -213,7 +213,7 @@
     "earnContractAddress": "0x8e655301b097cD359FaEE56B1dB2067517a84208",
     "oracle": "lps",
     "oracleId": "0x8e655301b097cD359FaEE56B1dB2067517a84208",
-    "status": "active",
+    "status": "eol",
     "createdAt": 1709119431,
     "platformId": "equilibria",
     "assets": ["USDC"],
