@@ -382,7 +382,7 @@
     "earnContractAddress": "0xD52a347e31A7CB508C9eE08918c369EE234167BD",
     "oracle": "lps",
     "oracleId": "0xD52a347e31A7CB508C9eE08918c369EE234167BD",
-    "status": "active",
+    "status": "eol",
     "platformId": "curve",
     "assets": ["fETH", "xETH", "WETH"],
     "migrationIds": ["l2-convex", "l2-curve"],
