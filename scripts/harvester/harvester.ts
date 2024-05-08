@@ -12,7 +12,7 @@ dotenv.config();
 
 /// PARAMETERS
 const HARVEST_FREQUENCY = 12 * 60 * 60; // 12 hours in seconds
-const FEE_BATCH_MIN_BALANCE = parseEther('0.02');
+const FEE_BATCH_MIN_BALANCE = parseEther('0.01');
 const MAX_FEE_PER_GAS = parseGwei('0.05');
 const MIN_TVL_TO_HARVEST = 10;
 const BROADCAST_TRANSACTIONS = Bun.argv.includes('--broadcast');
