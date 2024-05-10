@@ -475,5 +475,26 @@
     "addLiquidityUrl": "https://app.virtuswap.io/liquidity/addLiquidity?chainId=42161&token0=0x82af49447d8a07e3bd95bd0d56f35241523fbab1&token1=0xd1e094cabc5acb9d3b0599c3f76f2d01ff8d3563",
     "removeLiquidityUrl": "https://app.virtuswap.io/liquidity/remove?chainId=42161&pool=0x8431aaaa1bb7bd11d4740f19a0306e00b7edb817",
     "network": "arbitrum"
+  },
+  {
+    "id": "0x87b1f2852437788b8098F3Ad903d32Cde34C7DEd",
+    "name": "crvUSD (WBTC Market)",
+    "token": "cvcrvUSD",
+    "tokenProviderId": "curve-lend",
+    "tokenDecimals": 18,
+    "tokenAddress": "0x60D38b12d22BF423F28082bf396ff8F28cC506B1",
+    "earnedToken": "gCurveLendWBTC-crvUSD",
+    "earnedTokenAddress": "0x87b1f2852437788b8098F3Ad903d32Cde34C7DEd",
+    "earnContractAddress": "0x87b1f2852437788b8098F3Ad903d32Cde34C7DEd",
+    "oracle": "lps",
+    "oracleId": "0x87b1f2852437788b8098F3Ad903d32Cde34C7DEd",
+    "status": "active",
+    "platformId": "curve-lend",
+    "assets": ["crvUSD"],
+    "strategyTypeId": "multi-lp",
+    "network": "arbitrum",
+    "addLiquidityUrl": "https://lend.curve.fi/#/arbitrum/markets/one-way-market-1/vault/deposit",
+    "removeLiquidityUrl": "https://lend.curve.fi/#/arbitrum/markets/one-way-market-1/vault/withdraw",
+    "createdAt": 1715351923
   }
 ]
