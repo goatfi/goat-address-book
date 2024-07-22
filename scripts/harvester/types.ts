@@ -5,4 +5,5 @@ export interface Strategy {
     tvl: number;
     paused: boolean;
     lastHarvest: number;
+    vaultAPR: number;
   }

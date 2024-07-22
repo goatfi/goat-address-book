@@ -18,16 +18,23 @@ const MIN_TVL_TO_HARVEST = 10;
 const BROADCAST_TRANSACTIONS = Bun.argv.includes('--broadcast');
 
 let tvlData;
+let apyBreakdownData;
 
 async function main() {
   const blockTimestamp = await getBlockTimestamp();
-  tvlData = await getTVLData()
+  tvlData = await getTVLData();
+  apyBreakdownData = await getAPYBreakdownData();
 
   for (let i = 0; i < GoatVaults.vaults.length; i++) {
     const strategy = await buildStrategyData(GoatVaults.vaults[i] as Hex);
     if(strategy.paused) continue;
     if(strategy.tvl < MIN_TVL_TO_HARVEST) {
       console.log("Strategy below min TVL:", strategy.address, strategy.tvl);
+      continue;
+    }
+
+    if(strategy.vaultAPR <= 0) {
+      console.log("Rewards APR is 0:", strategy.address);
       continue;
     }
 
@@ -74,17 +81,24 @@ async function getTVLData(){
   return await response.json();
 };
 
+async function getAPYBreakdownData() {
+  const response = await fetch('https://api.goat.fi/apy/breakdown');
+  return await response.json();
+}
+
 async function buildStrategyData(vault: Hex): Promise<Strategy> {
   const tvl = await getTVL(vault, arbitrum.id.toString());
   const strategyAddress = await getStrategy(vault);
   const paused = await getPaused(strategyAddress);
   const lastHarvest = await getLastHarvest(strategyAddress);
+  const vaultAPR = await getVaultAPR(vault);
 
   return {
     address: strategyAddress,
     tvl,
     paused,
-    lastHarvest
+    lastHarvest,
+    vaultAPR
   };
 }
 
@@ -110,6 +124,10 @@ async function getLastHarvest(address: Hex): Promise<number> {
     abi: StrategyAbi,
     functionName: 'lastHarvest',
   }));
+}
+
+async function getVaultAPR(address: Hex): Promise<number> {
+  return apyBreakdownData[address].vaultApr;
 }
 
 async function getFeeBatchBalance(): Promise<bigint> {
