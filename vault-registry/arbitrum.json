@@ -538,5 +538,41 @@
     "addLiquidityUrl": "https://lend.curve.fi/#/arbitrum/markets/one-way-market-5/vault/deposit",
     "removeLiquidityUrl": "https://lend.curve.fi/#/arbitrum/markets/one-way-market-5/vault/withdraw",
     "createdAt": 1715448962
+  },
+  {
+    "id": "0x7eDF4A67d7752C59Bf1Ec755138f851B8790CB09",
+    "name": "WETH (ETH+ Market)",
+    "token": "WETH",
+    "tokenDecimals": 18,
+    "tokenAddress": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+    "earnedToken": "gSiloWETH-ETH+",
+    "earnedTokenAddress": "0x7eDF4A67d7752C59Bf1Ec755138f851B8790CB09",
+    "earnContractAddress": "0x7eDF4A67d7752C59Bf1Ec755138f851B8790CB09",
+    "oracle": "lps",
+    "oracleId": "0x7eDF4A67d7752C59Bf1Ec755138f851B8790CB09",
+    "status": "active",
+    "platformId": "silo",
+    "assets": ["WETH"],
+    "strategyTypeId": "multi-lp",
+    "network": "arbitrum",
+    "createdAt": 1724324034
+  },
+  {
+    "id": "0x44f86AE29d4077ABeF56897d5CeD25d9448346Ce",
+    "name": "WETH (uniETH Market)",
+    "token": "WETH",
+    "tokenDecimals": 18,
+    "tokenAddress": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+    "earnedToken": "gSiloWETH-uniETH",
+    "earnedTokenAddress": "0x44f86AE29d4077ABeF56897d5CeD25d9448346Ce",
+    "earnContractAddress": "0x44f86AE29d4077ABeF56897d5CeD25d9448346Ce",
+    "oracle": "lps",
+    "oracleId": "0x44f86AE29d4077ABeF56897d5CeD25d9448346Ce",
+    "status": "active",
+    "platformId": "silo",
+    "assets": ["WETH"],
+    "strategyTypeId": "multi-lp",
+    "network": "arbitrum",
+    "createdAt": 1724324035
   }
 ]
