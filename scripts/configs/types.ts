@@ -1,6 +1,6 @@
 import type { Hex } from 'viem';
 
-interface KnownInterfaces<T extends number | Hex = any> {
+interface KnownInterfaces<T extends number | Hex = number> {
   value: T;
   type: T extends number ? 'uint256' : 'address' | string;
   chainId?: number;
@@ -13,7 +13,7 @@ export type Addresses = Record<Uppercase<string>, AddressInfo>;
 /**
  * @dev config for addresses that belong more to a network then to a specific pool
  */
-export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
+export interface NetworkAddresses<T extends Record<string, AddressInfo> = Record<string, never>> {
   name: string;
   chainId: number;
   addresses: {
@@ -35,7 +35,7 @@ export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
 /**
  * @dev config for asset addresses on a certain network
  */
-export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
+export interface NetworkAssets<T extends Record<string, AddressInfo> = Record<string, never>> {
   name: string;
   chainId: number;
   addresses: {
@@ -65,7 +65,7 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
   } & T;
 }
 
-export interface NetworkVaults<T extends Record<string, AddressInfo> = {}> {
+export interface NetworkVaults<T extends Record<string, AddressInfo> = Record<string, never>> {
   name: string;
   chainId: number;
   vaults: Hex[];

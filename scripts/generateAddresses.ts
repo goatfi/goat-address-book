@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { prefixWithGeneratedWarning, prefixWithPragma } from './generator/utils';
 import { generateNetworkAddresses } from './generator/networkGenerator';
 import { generateAssetsAddresses } from './generator/assetsGenerator';
@@ -27,13 +27,13 @@ async function main() {
 
   const imports = [networkAddresses, assetAddresses].flat();
 
-  const jsExports = [...imports.map((f) => f.js).flat()];
-  writeFileSync(`./src/ts/GoatAddressBook.ts`, prefixWithGeneratedWarning(''));
+  const jsExports = [...imports.flatMap((f) => f.js)];
+  writeFileSync('./src/ts/GoatAddressBook.ts', prefixWithGeneratedWarning(''));
   jsExports.map((jsExport) => appendFileSync('./src/ts/GoatAddressBook.ts', `${jsExport}\n`));
 
-  const solidityImports = imports.map((f) => f.solidity).flat();
+  const solidityImports = imports.flatMap((f) => f.solidity);
 
-  writeFileSync(`./src/sol/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
+  writeFileSync('./src/sol/GoatAddressBook.sol', prefixWithGeneratedWarning(prefixWithPragma('')));
   solidityImports.map((solExport) => appendFileSync('./src/sol/GoatAddressBook.sol', solExport));
 }
 

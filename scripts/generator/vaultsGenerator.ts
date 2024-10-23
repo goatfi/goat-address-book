@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import { NetworkVaults } from '../configs/types';
+import * as fs from 'node:fs';
+import type { NetworkVaults } from '../configs/types';
 
-export function generateVaultAddresses(config: NetworkVaults<any>) {
+export function generateVaultAddresses(config: NetworkVaults) {
     const name = `Vaults${config.name}`;
 
     fs.writeFileSync(

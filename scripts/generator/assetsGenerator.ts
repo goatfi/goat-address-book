@@ -1,5 +1,4 @@
-import * as fs from 'fs';
-import {NetworkAddresses} from '../configs/types';
+import * as fs from 'node:fs';
 import {
   generateJsConstants,
   generateSolidityConstants,
@@ -7,11 +6,13 @@ import {
   prefixWithPragma,
   wrapIntoSolidityLibrary,
 } from './utils';
+import type { NetworkAddresses } from '../configs/types';
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function generateAssetsAddresses(config: NetworkAddresses<any>) {
   const name = `Assets${config.name}`;
 
-  let solidityLibrary = wrapIntoSolidityLibrary(
+  const solidityLibrary = wrapIntoSolidityLibrary(
     generateSolidityConstants({chainId: config.chainId, addresses: config.addresses}),
     name,
   );
