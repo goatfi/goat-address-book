@@ -24,8 +24,8 @@ export interface NetworkAddresses<T extends Record<string, AddressInfo> = {}> {
     GOAT_APP_MULTICALL: Hex;
     GOAT_VAULT_FACTORY: Hex;
     GOAT_BOOST_FACTORY: Hex;
-    LAYERZERO_BRIDGE_ADAPTER: Hex;
-    GOAT_FEE_BATCH: Hex;
+    LAYERZERO_BRIDGE_ADAPTER?: Hex;
+    GOAT_FEE_BATCH?: Hex;
     GOAT_REWARD_POOL?: Hex;
     GOAT_SWAPPER?: Hex;
     UNISWAP_POSITION_HELPER?: Hex;
@@ -56,6 +56,12 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = {}> {
     BAL?: Hex;
     AURA?: Hex;
     VRSW?: Hex;
+    eUSD?: Hex;
+    hyUSD?: Hex;
+    tBTC?: Hex;
+    cbBTC?: Hex;
+    cbETH?: Hex;
+    AERO?: Hex;
   } & T;
 }
 
@@ -64,4 +70,15 @@ export interface NetworkVaults<T extends Record<string, AddressInfo> = {}> {
   chainId: number;
   vaults: Hex[];
   boosts?: Hex[];
+}
+
+export interface Vault {
+    id: Hex;
+    status: string;
+    type: string;
+}
+  
+export interface Boost {
+    earnContractAddress: Hex;
+    status: string;
 }

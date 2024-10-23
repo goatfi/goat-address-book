@@ -2,9 +2,13 @@ import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSy
 import { prefixWithGeneratedWarning, prefixWithPragma } from './generator/utils';
 import { generateNetworkAddresses } from './generator/networkGenerator';
 import { generateAssetsAddresses } from './generator/assetsGenerator';
+import { generateVaultAddresses } from './generator/vaultsGenerator';
 import { arbitrumAddresses } from './configs/networks/arbitrum';
 import { arbitrumAssets } from './configs/assets/arbitrum';
 import { arbitrumVaults } from './configs/vaults/arbitrum';
+import { baseAddresses } from './configs/networks/base';
+import { baseAssets } from './configs/assets/base';
+import { baseVaults } from './configs/vaults/base';
 
 async function main() {
   // cleanup ts artifacts
@@ -17,9 +21,9 @@ async function main() {
     mkdirSync('./src/ts');
   }
 
-  const networkAddresses = [arbitrumAddresses].map((addresses) => generateNetworkAddresses(addresses));
-  const assetAddresses = [arbitrumAssets].map((addresses) => generateAssetsAddresses(addresses));
-  const vaultAddresses = [arbitrumVaults].map((addresses) => JSON.stringify(addresses));
+  const networkAddresses = [arbitrumAddresses, baseAddresses].map((addresses) => generateNetworkAddresses(addresses));
+  const assetAddresses = [arbitrumAssets, baseAssets].map((addresses) => generateAssetsAddresses(addresses));
+  const vaultAddresses = [arbitrumVaults, baseVaults].map((addresses) => generateVaultAddresses(addresses));
 
   const imports = [networkAddresses, assetAddresses].flat();
 
@@ -31,8 +35,6 @@ async function main() {
 
   writeFileSync(`./src/sol/GoatAddressBook.sol`, prefixWithGeneratedWarning(prefixWithPragma('')));
   solidityImports.map((solExport) => appendFileSync('./src/sol/GoatAddressBook.sol', solExport));
-
-  writeFileSync('./src/json/GoatVaults.json', vaultAddresses.join(`\n`));
 }
 
 main();
