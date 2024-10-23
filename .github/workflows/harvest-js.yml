@@ -13,6 +13,7 @@ jobs:
     env:
         HARVESTER_PK: ${{ secrets.HARVESTER_PK }}
         ARBITRUM_RPC_WEBSOCKET: ${{ secrets.ARBITRUM_RPC_WEBSOCKET }}
+        BASE_RPC_WEBSOCKET: ${{ secrets.BASE_RPC_WEBSOCKET}}
   
     name: Harvester
     runs-on: ubuntu-latest

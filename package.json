@@ -10,7 +10,8 @@
     "generate:addresses": "tsx scripts/generateAddresses.ts && npm run prettier",
     "start": "tsx scripts/generateAddresses.ts && npm run prettier && yarn test",
     "ci:publish": "npm run build && npm publish --access=public",
-    "test": "forge test -vv"
+    "test": "forge test -vv",
+    "harvester": "bun run scripts/harvester/harvester.ts"
   },
   "repository": {
     "type": "git",
