@@ -1,15 +1,38 @@
 {
   "name": "@goatfi/goat-address-book",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "This repository contains an up-to-date registry of all addresses of the Goat Protcol's smart contracts, for its usage in Solidity codebases.",
   "private": false,
   "type": "module",
   "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "module": "./dist/GoatAddressBook.mjs",
+  "types": "./dist/GoatAddressBook.d.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/GoatAddressBook.d.ts",
+        "default": "./dist/GoatAddressBook.js"
+      },
+      "import": {
+        "types": "./dist/GoatAddressBook.mts",
+        "default": "./dist/GoatAddressBook.mjs"
+      },
+      "types": "./dist/GoatAddressBook.d.ts",
+      "default": "./dist/GoatAddressBook.js"
+    }
+  },
   "scripts": {
     "prettier": "prettier --write 'src/**/*.{sol,ts,json}'",
     "generate:addresses": "tsx scripts/generateAddresses.ts && npm run prettier",
     "start": "tsx scripts/generateAddresses.ts && npm run prettier && yarn test",
     "ci:publish": "npm run build && npm publish --access=public",
+    "build": "tsup",
     "test": "forge test -vv",
     "harvester": "bun run scripts/harvester/harvester.ts"
   },
@@ -27,8 +50,10 @@
     "@bgd-labs/js-utils": "^1.1.1",
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
+    "esbuild-plugin-file-path-extensions": "^2.1.3",
     "prettier": "3.2.5",
     "prettier-plugin-solidity": "^1.3.1",
+    "tsup": "^8.3.0",
     "typescript": "^5.3.3",
     "viem": "^2.9.16"
   },
