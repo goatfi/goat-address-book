@@ -1,9 +1,8 @@
 {
   "name": "@goatfi/goat-address-book",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This repository contains an up-to-date registry of all addresses of the Goat Protcol's smart contracts, for its usage in Solidity codebases.",
   "private": false,
-  "type": "module",
   "sideEffects": false,
   "files": [
     "dist"
