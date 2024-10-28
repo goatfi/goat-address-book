@@ -5,7 +5,7 @@ import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extens
 export default defineConfig([
     {
         format: ['cjs', 'esm'],
-        entry: ['src/**/*.ts', 'src/**/*.json'],
+        entry: ['src/**/*.ts'],
         outDir: './dist',
         bundle: true,
         sourcemap: true,

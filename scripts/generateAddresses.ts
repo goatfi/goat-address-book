@@ -25,11 +25,11 @@ async function main() {
   const networkAddresses = [arbitrumAddresses, baseAddresses].map((addresses) => generateNetworkAddresses(addresses));
   const assetAddresses = [arbitrumAssets, baseAssets].map((addresses) => generateAssetsAddresses(addresses));
   [arbitrumVaults, baseVaults].map((addresses) => generateVaultAddresses(addresses));
-  [arbitrumMultistrategies].map((multistrategy) => generateMultistrategyAddresses(multistrategy));
+  const multistrategies = [arbitrumMultistrategies].map((multistrategy) => generateMultistrategyAddresses(multistrategy));
 
   const imports = [networkAddresses, assetAddresses].flat();
 
-  const jsExports = [...imports.flatMap((f) => f.js)];
+  const jsExports = [...imports.flatMap((f) => f.js), ...multistrategies.flatMap((f) => f.js)];
   writeFileSync('./src/ts/GoatAddressBook.ts', prefixWithGeneratedWarning(''));
   jsExports.map((jsExport) => appendFileSync('./src/ts/GoatAddressBook.ts', `${jsExport}\n`));
 
