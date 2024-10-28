@@ -4,3 +4,5 @@ export * as ProtocolBase from './ProtocolBase';
 export * as AssetsArbitrum from './AssetsArbitrum';
 export * as AssetsBase from './AssetsBase';
 export * as MultistrategiesArbitrum from './MultistrategiesArbitrum';
+export * as VaultsArbitrum from './VaultsArbitrum';
+export * as VaultsBase from './VaultsBase';
