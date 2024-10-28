@@ -55,7 +55,7 @@ contract ContractOwnershipTest is Test {
     function setUp() public virtual {
         vm.createSelectFork(vm.envString("ARBITRUM_RPC_URL"));
         string memory root = vm.projectRoot();
-        string memory vaultsPath = string.concat(root, "/src/json/VaultsArbitrum.json");
+        string memory vaultsPath = string.concat(root, "/vault-registry/arbitrum.json");
         string memory vaultsJson = vm.readFile(vaultsPath);
 
         string memory chainName = vm.parseJsonString(vaultsJson, ".name");
