@@ -65,11 +65,26 @@ export interface NetworkAssets<T extends Record<string, AddressInfo> = Record<st
   } & T;
 }
 
-export interface NetworkVaults<T extends Record<string, AddressInfo> = Record<string, never>> {
+export interface NetworkVaults {
   name: string;
   chainId: number;
   vaults: Hex[];
   boosts?: Hex[];
+}
+
+export interface NetworkMultistrategies {
+    name: string;
+    chainId: number;
+    multistrategies: Multistrategy[];
+}
+
+export interface Multistrategy {
+    name: string,
+    address: Hex,
+    asset: Hex,
+    oracleId : string,
+    decimals: number,
+    status: string
 }
 
 export interface Vault {

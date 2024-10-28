@@ -4,7 +4,7 @@
         "address": "0x54aDf00460C7B7874E5b475F413e88878063318a",
         "asset": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
         "oracleId": "ETH",
-        "decimals": "18",
+        "decimals": 18,
         "status": "active"
     }
 ]

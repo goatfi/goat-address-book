@@ -3,9 +3,11 @@ import { prefixWithGeneratedWarning, prefixWithPragma } from './generator/utils'
 import { generateNetworkAddresses } from './generator/networkGenerator';
 import { generateAssetsAddresses } from './generator/assetsGenerator';
 import { generateVaultAddresses } from './generator/vaultsGenerator';
+import { generateMultistrategyAddresses } from './generator/multistrategiesGenerator';
 import { arbitrumAddresses } from './configs/networks/arbitrum';
 import { arbitrumAssets } from './configs/assets/arbitrum';
 import { arbitrumVaults } from './configs/vaults/arbitrum';
+import { arbitrumMultistrategies } from './configs/multistrategies/arbitrum';
 import { baseAddresses } from './configs/networks/base';
 import { baseAssets } from './configs/assets/base';
 import { baseVaults } from './configs/vaults/base';
@@ -23,6 +25,7 @@ async function main() {
   const networkAddresses = [arbitrumAddresses, baseAddresses].map((addresses) => generateNetworkAddresses(addresses));
   const assetAddresses = [arbitrumAssets, baseAssets].map((addresses) => generateAssetsAddresses(addresses));
   [arbitrumVaults, baseVaults].map((addresses) => generateVaultAddresses(addresses));
+  [arbitrumMultistrategies].map((multistrategy) => generateMultistrategyAddresses(multistrategy));
 
   const imports = [networkAddresses, assetAddresses].flat();
 
