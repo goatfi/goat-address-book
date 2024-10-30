@@ -44,7 +44,7 @@
         "start": "tsx scripts/generateAddresses.ts && tsup && npm run prettier",
         "ci:publish": "npm run build && npm publish --access=public",
         "build": "tsup",
-        "test": "forge test -vv",
+        "check-ownership": "tsx scripts/contractOwnership/ContractOwnershipTests.ts",
         "harvester": "bun run scripts/harvester/harvester.ts"
     },
     "repository": {

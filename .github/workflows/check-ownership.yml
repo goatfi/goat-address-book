@@ -1,0 +1,36 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+  
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+  
+    env:
+      ARBITRUM_WEBSOCKET: ${{ secrets.ARBITRUM_WEBSOCKET }}
+      BASE_WEBSOCKET: ${{ secrets.BASE_WEBSOCKET}}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run Check Ownership
+        run: yarn check-ownership
