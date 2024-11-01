@@ -8,8 +8,8 @@ const vaults: Vault[] = ArbitrumVaults as Vault[];
 const boosts: Boost[] = ArbitrumBoosts as Boost[];
 
 export const arbitrumVaults: NetworkVaults = {
-  name: 'Arbitrum',
-  chainId: ChainId.arbitrum_one,
-  vaults: vaults.filter(vault => vault.status === 'active' && vault.type !== 'gov').map(vault => vault.id) as Hex[],
-  boosts: boosts.filter(boost => boost.status === 'active').map(boost => boost.earnContractAddress) as Hex[]
+	name: 'Arbitrum',
+	chainId: ChainId.arbitrum_one,
+	vaults: vaults.filter((vault) => vault.status === 'active' && vault.type !== 'gov').map((vault) => vault.id) as Hex[],
+	boosts: boosts.filter((boost) => boost.status === 'active').map((boost) => boost.earnContractAddress) as Hex[],
 };
