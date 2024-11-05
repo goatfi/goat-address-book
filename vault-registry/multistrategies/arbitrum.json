@@ -6,5 +6,13 @@
         "oracleId": "ETH",
         "decimals": 18,
         "status": "active"
+    },
+    {
+        "name": "Yield Chaser crvUSD",
+        "address": "0xA7781F1D982Eb9000BC1733E29Ff5ba2824cDBE5",
+        "asset": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD",
+        "decimals": 18,
+        "status": "active"
     }
 ]
