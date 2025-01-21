@@ -38,5 +38,13 @@
         "oracleId": "USDC",
         "decimals": 18,
         "status": "active"
+    },
+    {
+        "name": "Yield Chaser USDT",
+        "address": "0x3782bA74E32021dD2e2A7ADE5118E83440EE24E4",
+        "asset": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "oracleId": "USDT",
+        "decimals": 18,
+        "status": "active"
     }
 ]
